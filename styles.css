@@ -1,0 +1,222 @@
+:root {
+  --ink: #14201c;
+  --muted: #4a5c55;
+  --brand: #0a6b5c;
+  --brand-deep: #074f44;
+  --surface: rgba(255, 252, 247, 0.72);
+  --line: rgba(20, 32, 28, 0.12);
+  --glow-a: #7ec8b8;
+  --glow-b: #e8c07a;
+  --bg-top: #d9efe8;
+  --bg-bottom: #f4ebe0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  color: var(--ink);
+  font-family: Figtree, sans-serif;
+  background: linear-gradient(165deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+  overflow-x: hidden;
+}
+
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(48px);
+  opacity: 0.55;
+  animation: drift 14s ease-in-out infinite alternate;
+}
+
+.orb-a {
+  width: min(52vw, 420px);
+  height: min(52vw, 420px);
+  top: -8%;
+  left: -6%;
+  background: var(--glow-a);
+}
+
+.orb-b {
+  width: min(48vw, 380px);
+  height: min(48vw, 380px);
+  right: -8%;
+  bottom: 8%;
+  background: var(--glow-b);
+  animation-delay: -4s;
+  animation-duration: 18s;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(20, 32, 28, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 32, 28, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 35%, transparent 78%);
+  animation: grid-shift 22s linear infinite;
+}
+
+.stage {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(1.5rem, 4vw, 3rem) 1.25rem 2.5rem;
+}
+
+.brand {
+  margin: 0 0 0.85rem;
+  font-family: Syne, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.1rem, 7vw, 3.6rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--brand-deep);
+  animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.headline {
+  margin: 0;
+  max-width: 18ch;
+  font-family: Syne, sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.25rem, 3.4vw, 1.75rem);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+.lede {
+  margin: 0.75rem 0 0;
+  max-width: 28ch;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.14s both;
+}
+
+.qr-wrap {
+  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+  padding: 0.85rem;
+  background: #fffdf8;
+  animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.22s both;
+}
+
+#qr {
+  display: block;
+  width: min(64vw, 256px);
+  height: min(64vw, 256px);
+}
+
+#qr img,
+#qr canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.qr-hint {
+  margin: 0.85rem 0 0;
+  max-width: min(64vw, 256px);
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  word-break: break-all;
+}
+
+.actions {
+  margin-top: 1.5rem;
+  animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.85rem;
+  padding: 0 1.35rem;
+  border: 1px solid var(--brand);
+  background: var(--brand);
+  color: #f7fffc;
+  font: 600 0.98rem/1 Figtree, sans-serif;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--brand-deep);
+  border-color: var(--brand-deep);
+  transform: translateY(-1px);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(24px, 18px) scale(1.08);
+  }
+}
+
+@keyframes grid-shift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 48px 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb,
+  .grid,
+  .brand,
+  .headline,
+  .lede,
+  .qr-wrap,
+  .actions {
+    animation: none;
+  }
+}

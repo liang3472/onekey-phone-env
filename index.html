@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="OneKey Phone Env — 扫码下载 Android APK"
+    />
+    <title>OneKey Phone Env</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true">
+      <div class="orb orb-a"></div>
+      <div class="orb orb-b"></div>
+      <div class="grid"></div>
+    </div>
+
+    <main class="stage">
+      <p class="brand">OneKey Phone Env</p>
+      <h1 class="headline">扫码安装测试环境包</h1>
+      <p class="lede">用手机扫描下方二维码，直接下载并安装 APK。</p>
+
+      <div class="qr-wrap">
+        <div id="qr" role="img" aria-label="APK 下载二维码"></div>
+        <p class="qr-hint" id="apk-url"></p>
+      </div>
+
+      <div class="actions">
+        <a class="btn" id="download-btn" href="./assets/app-debug.apk" download="app-debug.apk"
+          >直接下载 APK</a
+        >
+      </div>
+    </main>
+
+    <script src="./vendor/qrcode.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
